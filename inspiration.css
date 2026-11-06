@@ -68,3 +68,7 @@
 @media(max-width:480px){.world-choice{font-size:19px;gap:7px}.world-choice i{font-size:18px}.world-index{font-size:8px;padding-top:5px}.worlds-preview{padding:16px}.world-images{height:280px}}
 
 .footer-socials .social-icon[aria-label="Bilibili"] img{width:36px;height:19px;max-width:none}
+
+/* Official complete brand artwork, proportionally fitted without redrawing. */
+.footer-socials .social-icon[aria-label="小红书"] img,.footer-socials .social-icon[aria-label="Xiaohongshu"] img{width:36px;height:19px;max-width:none}
+.footer-socials .social-icon[aria-label="YouTube"] img{width:28px;height:24px;max-height:24px}
