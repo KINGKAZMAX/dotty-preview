@@ -1,0 +1,34 @@
+/* Hero UI: title layers share one clock; keep the existing DOTTY mark. */
+.hero-ui-title-wrap{display:inline-grid;vertical-align:baseline;max-width:100%;perspective:800px}
+.hero-ui-title-layer{grid-area:1/1;display:inline-flex;align-items:baseline;white-space:nowrap;justify-content:center}
+.hero-ui-title-layer .title-images{flex:none;align-self:center}
+.hero-ui-enter{animation:hero-ui-enter 1.05s cubic-bezier(.18,1.28,.28,1) both}
+.hero-ui-exit{animation:hero-ui-exit .9s cubic-bezier(.36,0,.24,1) both;pointer-events:none}
+@keyframes hero-ui-enter{from{opacity:0;filter:blur(10px);transform:translate3d(0,18px,0) rotateX(-12deg)}to{opacity:1;filter:blur(0);transform:translate3d(0,0,0) rotateX(0)}}
+@keyframes hero-ui-exit{from{opacity:1;filter:blur(0);transform:translate3d(0,0,0) rotateX(0)}to{opacity:0;filter:blur(10px);transform:translate3d(0,-15px,0) rotateX(12deg)}}
+.hero-ui-form{position:relative;overflow:visible}
+.hero-ui-search-inner{position:relative}
+.hero-ui-search-inner input{position:relative;z-index:1}
+.hero-ui-placeholder{position:absolute;left:61px;right:12px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;pointer-events:none;text-align:left;font-size:18px;font-weight:400;color:#8c908a;background:linear-gradient(105deg,#8c908a 20%,#c9ccc7 45%,#8c908a 70%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:hero-ui-shimmer 1.4s linear infinite}
+.hero-ui-search-inner:focus-within .hero-ui-placeholder{opacity:0}
+@keyframes hero-ui-shimmer{from{background-position:100% 0}to{background-position:0 0}}
+.hero-ui-submit{position:relative;z-index:2;flex:none;display:grid;place-items:center;width:40px;height:40px;margin-right:-13px;border-radius:50%;background:#4d64ed;color:#fff;transition:transform .18s,background .18s}
+.hero-ui-submit:hover{background:#3c52dc;transform:scale(1.05)}
+.hero-ui-submit svg{width:19px;height:19px;stroke:currentColor;color:inherit}
+.hero-ui-color{position:absolute;z-index:10;bottom:calc(100% + 10px);left:0;width:100%;padding:18px;border:1px solid #e6e6e4;border-radius:20px;background:#fff;box-shadow:0 16px 60px #0002;text-align:left;color:#212221}
+.hero-ui-color-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:13px}
+.hero-ui-color-close{width:28px;height:28px;border-radius:50%;font-size:20px;line-height:1;background:#f3f3f3}
+.hero-ui-saturation{height:150px;position:relative;border-radius:10px;touch-action:none;cursor:crosshair;background:linear-gradient(to top,#000,transparent),linear-gradient(to right,#fff,hsl(var(--hero-hue,0deg) 100% 50%))}
+.hero-ui-color-dot{position:absolute;width:14px;height:14px;transform:translate(-50%,-50%);border:2px solid #fff;border-radius:50%;box-shadow:0 0 2px #0009;pointer-events:none}
+.hero-ui-hue-label{display:flex;align-items:center;gap:12px;margin-top:14px;color:#777;font-size:11px}
+.hero-ui-hue{appearance:none;-webkit-appearance:none;flex:1;height:8px;margin:0;border-radius:8px;background:linear-gradient(to right,red,#ff0,#0f0,#0ff,#00f,#f0f,red);cursor:pointer}
+.hero-ui-hue::-webkit-slider-thumb{-webkit-appearance:none;width:17px;height:17px;border:2px solid #fff;border-radius:50%;box-shadow:0 1px 4px #0008;background:transparent}
+.hero-ui-hue::-moz-range-thumb{width:14px;height:14px;border:2px solid #fff;border-radius:50%;box-shadow:0 1px 4px #0008;background:transparent}
+.hero-ui-color-bottom{display:flex;align-items:end;justify-content:space-between;gap:14px;margin-top:15px}
+.hero-ui-color-bottom label{display:flex;align-items:center;gap:8px;color:#777;font-size:11px}
+.hero-ui-hex{width:98px;height:38px;border:1px solid #dedede;border-radius:9px;padding:0 9px;text-transform:uppercase;font-size:12px}
+.hero-ui-hex[aria-invalid=true]{border-color:#c64b4b}
+.hero-ui-color-apply{min-height:38px;padding:0 18px;border-radius:30px;background:#202120;color:white;font-size:12px}
+.hero-ui-paused .hero-ui-placeholder{animation-play-state:paused}
+@media(max-width:767px){.hero-ui-placeholder{left:40px;font-size:12px}.hero-ui-submit{width:32px;height:32px;margin-right:-7px}.hero-ui-submit svg{width:16px;height:16px}.hero-ui-color{padding:14px}.hero-ui-saturation{height:110px}}
+@media(prefers-reduced-motion:reduce){.hero-ui-title-layer,.hero-ui-placeholder{animation:none!important}.hero-ui-placeholder{background:none;-webkit-text-fill-color:currentColor}}

@@ -1,8 +1,10 @@
+import { setupHeroUI } from './hero-ui.js?v=motion-v9';
+import { setupHeroMotion } from './hero-motion.js?v=motion-v9';
 import { assets } from './data.js';
-import { mountWorkbench } from './workbench.js?v=client-v8';
-import { getLocale, setLocale, t, localize } from './i18n.js?v=client-v8';
+import { mountWorkbench } from './workbench.js?v=motion-v9';
+import { getLocale, setLocale, t, localize } from './i18n.js?v=motion-v9';
 import { LANGUAGE_OPTIONS } from './language-options.js';
-import { setupProfile } from './profile.js?v=client-v8';
+import { setupProfile } from './profile.js?v=motion-v9';
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -33,19 +35,7 @@ document.addEventListener('error', event => {
   if (image.closest('.floating-field')) image.parentElement.hidden = true;
   else image.src = imageFallback;
 }, true);
-// Show the brand loading state only while the first-view image assets are decoding.
-const loader = $('#loading-screen');
-if (loader && !reducedMotion.matches) {
-  const heroImages = $$('.title-images img, .float-anchor img');
-  if (heroImages.some(image => !image.complete)) {
-    loader.hidden = false;
-    Promise.race([
-      Promise.allSettled(heroImages.map(image => image.decode())),
-      new Promise(resolve => setTimeout(resolve, 1800))
-    ]).then(() => { loader.classList.add('leaving'); setTimeout(() => { loader.hidden = true; }, 280); });
-  }
-}
-
+// The image field fades in as textures become ready; the page remains immediately usable.
 function showToast(message) {
   const toast = $('#toast');
   if (!toast) return;
@@ -193,41 +183,15 @@ menuToggle?.addEventListener('click', () => { if (!menu) return; const opening =
 menu?.addEventListener('click', event => { if (event.target.closest('a,button')) { menu.hidden = true; menuToggle?.setAttribute('aria-expanded', 'false'); } });
 document.addEventListener('keydown', event => { if (event.key === 'Escape' && menu && !menu.hidden) { menu.hidden = true; menuToggle?.setAttribute('aria-expanded', 'false'); menuToggle?.focus(); } });
 
-const rotating = $('#rotating-word');
-const phrases = ['从一个点子开始', '从一束光影开始', '从一次想象开始'];
-let wordIndex = 0, wordTimer;
-function rotateWords() {
-  clearInterval(wordTimer);
-  if (!rotating || reducedMotion.matches) return;
-  wordTimer = setInterval(() => {
-    rotating.classList.add('changing');
-    setTimeout(() => { wordIndex = (wordIndex + 1) % phrases.length; rotating.textContent = t(phrases[wordIndex]); rotating.classList.remove('changing'); }, 220);
-  }, 4200);
-}
-rotateWords(); reducedMotion.addEventListener?.('change', rotateWords);
-const hero = $('.hero');
-const floaters = $$('.float-anchor');
-let pointerFrame = 0;
-if (hero) {
-  hero.addEventListener('pointermove', event => {
-    if (reducedMotion.matches || event.pointerType === 'touch') return;
-    cancelAnimationFrame(pointerFrame);
-    pointerFrame = requestAnimationFrame(() => {
-    const bounds = hero.getBoundingClientRect();
-    hero.style.setProperty('--pointer-x', `${((event.clientX - bounds.left) / bounds.width - .5) * 12}px`);
-    hero.style.setProperty('--pointer-y', `${((event.clientY - bounds.top) / bounds.height - .5) * 12}px`);
-    const positions = floaters.map(item => ({item, rect: item.getBoundingClientRect()}));
-    positions.forEach(({item,rect}) => {
-      const dx = rect.x + rect.width/2 - event.clientX, dy = rect.y + rect.height/2 - event.clientY;
-      const distance = Math.hypot(dx,dy) || 1, influence = Math.max(0, 1 - distance/210)*7;
-      item.style.setProperty('--local-x', `${dx/distance*influence}px`);
-      item.style.setProperty('--local-y', `${dy/distance*influence}px`);
-    });
-    });
-  });
-  hero.addEventListener('pointerleave', () => { hero.style.setProperty('--pointer-x', '0px'); hero.style.setProperty('--pointer-y', '0px'); cancelAnimationFrame(pointerFrame); floaters.forEach(item => {item.style.setProperty('--local-x','0px');item.style.setProperty('--local-y','0px');}); });
-}
-
+const heroMotion = setupHeroMotion({hero:$('.hero'),field:$('#floating-field'),assets,reducedMotion});
+const heroUI = setupHeroUI({onCycle:index=>heroMotion.setTheme(index),translate:t,reducedMotion,onColor:({hue,saturation,brightness})=>{
+  const neutral=saturation<.12||brightness<.12;
+  activeBoard=null; setLibraryView('images'); filter='全部'; color=neutral?'all':hue>=180&&hue<320?'blue':hue>=75&&hue<180?'teal':'warm';
+  $('#library-search').value=$('#hero-search').value;
+  setActive($('#filter-tabs'),'data-filter',filter); setActive($('#color-filters'),'data-color',color); renderAssets();
+  $('#library').scrollIntoView({behavior:reducedMotion.matches?'instant':'smooth'});
+  showToast(neutral?'当前支持暖色、青色和蓝色，已显示全部色调':`已筛选${color==='blue'?'蓝色':color==='teal'?'青色':'暖色'}调`);
+}});
 
 // Footer links use the same project and library actions as the main navigation.
 $$('[data-create-project]').forEach(button => button.addEventListener('click', () => openCreate(false)));
@@ -266,7 +230,7 @@ function syncLanguage() {
   $('#current-language').textContent = LANGUAGE_OPTIONS.find(option => option.code === languageChoice)?.label || '简体中文';
   languageToggle.setAttribute('aria-label', `${t('切换语言')} · ${$('#current-language').textContent}`);
   $$('[data-locale]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.locale === languageChoice)));
-  rotating.textContent = t(phrases[wordIndex]);
+  heroUI.setLocale(t);
   renderAssets(); renderDrafts(); profileUI?.refresh();
 }
 function chooseLanguage(code) {

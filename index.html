@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff"><link rel="icon" type="image/svg+xml" href="./assets/dotty-mark.svg"><meta name="robots" content="noindex,nofollow"><meta name="description" content="DOTTY，为专业影视创作团队打造的 AI 创作工作流。"><title>DOTTY — 从一个点子，到下一部作品</title><link rel="stylesheet" href="./styles.css?v=client-v8"><link rel="stylesheet" href="./hero-motion.css?v=client-v8"><link rel="stylesheet" href="./workbench.css?v=client-v8"><link rel="stylesheet" href="./inspiration.css?v=client-v8"><link rel="stylesheet" href="./profile.css?v=client-v8"></head>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff"><link rel="icon" type="image/svg+xml" href="./assets/dotty-mark.svg"><meta name="robots" content="noindex,nofollow"><meta name="description" content="DOTTY，为专业影视创作团队打造的 AI 创作工作流。"><title>DOTTY — 从一个点子，到下一部作品</title><link rel="stylesheet" href="./styles.css?v=motion-v9"><link rel="stylesheet" href="./hero-motion.css?v=motion-v9"><link rel="stylesheet" href="./workbench.css?v=motion-v9"><link rel="stylesheet" href="./inspiration.css?v=motion-v9"><link rel="stylesheet" href="./profile.css?v=motion-v9"><link rel="stylesheet" href="./hero-ui.css?v=motion-v9"></head>
 <body>
 <div id="loading-screen" class="loading-screen" role="status" aria-label="正在准备创作空间" hidden><div class="loading-cluster" aria-hidden="true"><img src="./assets/dotty-mark.svg" alt=""></div><span>让点子，慢慢成形。</span></div>
 <a class="skip-link" href="#library">跳到创作素材</a>
@@ -120,8 +120,4 @@
   </div>
 </footer></div>
 <div id="workbench-view" hidden></div><dialog id="footer-info-dialog"></dialog><dialog id="asset-dialog" aria-label="创作素材详情"></dialog><dialog id="create-dialog" aria-label="新建项目"></dialog><div id="toast" class="toast" hidden role="status" aria-live="polite"></div>
-<script type="module">
-import { assets } from './data.js';
-const positions=[[3,22,82,-20,.95],[21,17,83,37,.95],[33,7,55,-22,.40],[60,6,75,30,.65],[86,17,65,-24,.9],[97,8,80,-20,.9],[15,36,68,18,.55],[0,45,82,8,.8],[88,38,80,-9,.9],[73,42,72,-3,.22],[1,66,64,-12,.95],[16,61,57,-10,.8],[35,73,72,40,.35],[65,88,60,-22,.6],[80,78,66,35,.7],[95,72,92,20,.85],[6,86,86,-28,.9],[20,80,86,-30,.95],[47,94,58,6,.55],[70,92,87,-36,.65],[31,94,80,25,.8],[45,1,73,6,.35],[11,4,61,42,.45],[75,-2,83,43,.25]];
-document.querySelector('#floating-field').innerHTML=positions.map((p,i)=>`<div class="float-anchor" style="--x:${p[0]}%;--y:${p[1]}%;--s:${p[2]}px;--r:${p[3]}deg;--o:${p[4]};--delay:${-i*1.7}s;--duration:${18+i%6}s"><img src="${assets[i%assets.length].image}" alt="" draggable="false"></div>`).join('');
-</script><script type="module" src="./hero-motion.js?v=client-v8"></script><script type="module" src="./app.js?v=client-v8"></script></body></html>
+<script type="module" src="./app.js?v=motion-v9"></script></body></html>
