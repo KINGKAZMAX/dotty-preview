@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff"><link rel="icon" type="image/svg+xml" href="./assets/dotty-mark.svg"><meta name="robots" content="noindex,nofollow"><meta name="description" content="DOTTY，为专业影视创作团队打造的 AI 创作工作流。"><title>DOTTY — 从一个点子，到下一部作品</title><link rel="stylesheet" href="./styles.css?v=client-v8"><link rel="stylesheet" href="./hero-motion.css?v=client-v8"><link rel="stylesheet" href="./workbench.css?v=client-v8"><link rel="stylesheet" href="./inspiration.css?v=client-v8"><link rel="stylesheet" href="./profile.css?v=client-v8"></head>
+<body>
+<div id="loading-screen" class="loading-screen" role="status" aria-label="正在准备创作空间" hidden><div class="loading-cluster" aria-hidden="true"><img src="./assets/dotty-mark.svg" alt=""></div><span>让点子，慢慢成形。</span></div>
+<a class="skip-link" href="#library">跳到创作素材</a>
+<div id="home-view">
+<header class="site-header"><nav class="nav-left" aria-label="主导航"><a class="dotmark" href="#" aria-label="DOTTY 首页"><img src="./assets/dotty-mark.svg" alt="" aria-hidden="true"></a><a href="#library">灵感</a><button data-open-workbench>项目</button><button data-open-workbench data-tab="review">审片</button></nav><a class="wordmark" href="#" aria-label="DOTTY 首页"><img src="./assets/dotty-wordmark.svg" alt="" aria-hidden="true"></a><div class="nav-right"><button class="nav-recent" data-open-workbench>我的工作台</button><button class="pill-button" id="new-project">新建项目 <span>↗</span></button><button id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开导航"><span></span><span></span></button></div></header>
+<nav id="mobile-menu" hidden aria-label="移动导航"><a href="#library">探索灵感</a><button data-open-workbench>项目工作台</button><button data-open-workbench data-tab="review">团队审片</button></nav>
+<main>
+<section class="hero" aria-labelledby="hero-title"><div id="floating-field" class="floating-field" aria-hidden="true"></div><div class="hero-content"><h1 id="hero-title">让下一个好故事<br><span id="rotating-word">从一个点子开始</span><span class="title-images" aria-hidden="true"><img src="./assets/inspiration-forest-sunbeams.jpg" alt=""><img src="./assets/project-courtyard.jpg" alt=""></span></h1><form id="search-form" class="hero-search"><div class="search-inner"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="7.5"></circle><path d="m16 16 5 5"></path></svg><input id="hero-search" name="idea" aria-label="输入创作点子或搜索参考" placeholder="一句灵感，或一个你想寻找的画面" autocomplete="off"></div><button class="search-action" type="submit" aria-label="搜索创作参考"><img class="search-brand-mark" src="./assets/dotty-mark.svg" alt="" aria-hidden="true"></button></form><button class="pill-button hero-cta" id="create-button">从这里开始创作 <span>↗</span></button><p class="hero-caption">让想象有迹可循，让创作自然发生。</p></div><a class="down-arrow" href="#possibilities" aria-label="探索更多">⌄</a><button class="continue-card" data-open-workbench data-tab="shots"><span class="continue-top"><span class="status-dot"></span>继续上次的创作 <span>↗</span></span><span class="continue-main"><img src="./assets/project-courtyard.jpg" alt="日月项目场景参考"><span><strong>日月</strong><small>第 2 集 · 镜头工作台</small></span></span><span class="continue-bottom">92 个镜头 · 视频待生成</span></button></section>
+<div class="creative-studio" id="creative-studio">
+  <aside class="studio-sidebar" aria-label="创作空间导航">
+    <div class="studio-sidebar-top"><a class="studio-signature" href="#possibilities"><img src="./assets/dotty-mark.svg" alt=""><span>创作空间</span></a><button id="sidebar-toggle" aria-label="收起侧栏" aria-expanded="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9 4v16"/></svg></button></div>
+    <nav class="studio-navigation">
+      <a href="#possibilities" class="studio-nav-item active" data-studio-nav="explore"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 6.3L21 12l-6.3 2.7L12 21l-2.7-6.3L3 12l6.3-2.7Z"/></svg><span>探索灵感</span></a>
+      <a href="#library" class="studio-nav-item" data-studio-nav="saved" data-library-filter="已收藏"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v17l-6-4-6 4Z"/></svg><span>我的收藏</span></a>
+      <a href="#draft-list" class="studio-nav-item" data-studio-nav="drafts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h7l2 2h9v11H3Z"/><path d="M3 7V4h7l2 3"/></svg><span>本地草稿</span></a>
+      <span class="studio-nav-label">创作工具</span>
+      <button class="studio-nav-item" data-open-workbench><span class="studio-tool-dot tool-violet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v14H5Z"/><path d="M9 5v14M5 10h14"/></svg></span><span>项目工作台</span></button>
+      <button class="studio-nav-item" data-open-workbench data-tab="shots"><span class="studio-tool-dot tool-blue"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3Z"/></svg></span><span>镜头创作</span></button>
+      <button class="studio-nav-item" data-open-workbench data-tab="review"><span class="studio-tool-dot tool-peach"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v12H9l-5 4Z"/><path d="m8 9 3 3 5-5"/></svg></span><span>团队审片</span></button>
+    </nav>
+    <div class="studio-sidebar-bottom"><button class="studio-new-project" data-create-project><span>开始创作</span><span aria-hidden="true">＋</span></button><button id="profile-trigger" type="button" class="studio-profile-trigger" aria-label="登录与个人空间"><span class="profile-avatar">•</span></button></div>
+  </aside>
+  <div class="studio-content">
+    <section id="possibilities" class="studio-discovery">
+      <header class="studio-heading"><div><p class="eyebrow">给下一部作品，一点新的可能。</p><h2>把灵感，变成下一帧。</h2></div><div class="studio-carousel-controls"><button id="feature-prev" aria-label="上一组灵感"><span aria-hidden="true">←</span></button><button id="feature-next" aria-label="下一组灵感"><span aria-hidden="true">→</span></button></div></header>
+      <div class="studio-feature-track" id="studio-feature-track">
+        <button class="studio-feature-card card-world" data-library-filter="场景" data-explore-card><img class="studio-card-background" src="./assets/project-courtyard.jpg" alt="山间院落场景参考"><span class="studio-card-badge">场景与世界</span><span class="studio-card-copy"><strong>一个画面，<br>打开一个世界。</strong><span>探索场景参考 <i aria-hidden="true">↗</i></span></span></button>
+        <button class="studio-feature-card card-characters" data-library-filter="角色" data-explore-card><span class="studio-card-badge">角色与人物</span><span class="character-sheets" aria-hidden="true"><img src="./assets/character-grey-haired-youth.jpg" alt=""><img src="./assets/character-jiang-mingzi.jpg" alt=""></span><span class="studio-card-copy"><strong>让每个角色，<br>都有自己的故事。</strong><span>寻找故事的主角 <i aria-hidden="true">↗</i></span></span></button>
+        <button class="studio-feature-card card-shots" data-open-workbench data-tab="shots"><span class="studio-card-badge">镜头创作</span><span class="shot-stack" aria-hidden="true"><img src="./assets/inspiration-misty-forest.jpg" alt=""><img src="./assets/inspiration-forest-sunbeams.jpg" alt=""><span>01 — 02</span></span><span class="studio-card-copy"><strong>把想象，<br>推进到下一帧。</strong><span>进入镜头工作台 <i aria-hidden="true">↗</i></span></span></button>
+      </div>
+      <div class="studio-shortcuts" aria-label="创作快捷入口">
+        <a href="#library" class="studio-shortcut"><span class="shortcut-icon tool-violet"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.5"/><path d="m4 18 6-6 4 3 3-5 4 8"/></svg></span><span><strong>灵感检索</strong><small>找到故事的第一颗点</small></span><span class="shortcut-arrow" aria-hidden="true">↗</span></a>
+        <button class="studio-shortcut" data-create-project><span class="shortcut-icon tool-blue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5Z"/><path d="M8 8h8M8 12h6M8 16h4"/></svg></span><span><strong>项目创作</strong><small>从一个想法开始</small></span><span class="shortcut-arrow" aria-hidden="true">↗</span></button>
+        <button class="studio-shortcut" data-open-workbench data-tab="shots"><span class="shortcut-icon tool-mint"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="4"/><path d="m10 9 5 3-5 3Z"/></svg></span><span><strong>镜头工作台</strong><small>让每一步清晰可见</small></span><span class="shortcut-arrow" aria-hidden="true">↗</span></button>
+        <button class="studio-shortcut" data-open-workbench data-tab="review"><span class="shortcut-icon tool-peach"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v12H9l-5 4Z"/><path d="m8 9 3 3 5-5"/></svg></span><span><strong>团队审片</strong><small>让好作品一起发生</small></span><span class="shortcut-arrow" aria-hidden="true">↗</span></button>
+      </div>
+    </section>
+<section id="library" class="library"><div class="section-heading"><div><p class="eyebrow">灵感，正在这里发生。</p><h2>你的下一幕，会是什么？</h2></div><div class="library-search-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7.5"></circle><path d="m16 16 5 5"></path></svg><input id="library-search" aria-label="搜索素材" placeholder="搜索场景、人物、光影…"></div></div><div class="library-view-tabs" role="group" aria-label="灵感浏览方式"><button data-library-view="images" class="active" aria-pressed="true">素材</button><button data-library-view="boards" aria-pressed="false">灵感板</button></div><div id="active-board" hidden><span></span><button id="close-board" aria-label="退出灵感板">×</button></div><div class="library-toolbar"><div id="filter-tabs" role="group" aria-label="素材类别"><button data-filter="全部" class="active">全部</button><button data-filter="场景">场景</button><button data-filter="角色">角色</button><button data-filter="光影">光影</button><button data-filter="镜头">镜头</button><button data-filter="已收藏">已收藏 <span>♡</span></button></div><div id="color-filters" role="group" aria-label="色调筛选"><button data-color="all" class="active" aria-label="所有色调">全部色调</button><button data-color="teal" style="--swatch:#7f9c8d" aria-label="青绿色调"></button><button data-color="warm" style="--swatch:#bd8d61" aria-label="暖色调"></button><button data-color="blue" style="--swatch:#6f8da9" aria-label="蓝色调"></button></div></div><div class="library-meta"><span id="result-count"></span></div><div id="library-grid" class="library-grid"></div><div id="moodboard-grid" class="moodboard-grid" hidden></div><div id="empty-state" hidden><span class="empty-dots">· · ·</span><h3>还没有找到这个画面</h3><p>换个关键词，或从全部灵感重新开始。</p><button id="clear-filters" class="pill-button">查看全部</button></div><div id="draft-list"></div></section>
+  </div>
+</div>
+<section class="worlds-section" aria-labelledby="worlds-title">
+  <div class="worlds-heading"><p class="eyebrow">每一个方向，都值得探索。</p><h2 id="worlds-title">让灵感，<br>找到自己的故事。</h2></div>
+  <div class="worlds-layout">
+    <div class="worlds-list" role="group" aria-label="探索创作方向">
+      <button class="world-choice active" data-world="scenes" aria-pressed="true"><span class="world-index">01</span><span>场景与世界</span><i aria-hidden="true">↗</i></button>
+      <button class="world-choice" data-world="characters" aria-pressed="false"><span class="world-index">02</span><span>角色与人物</span><i aria-hidden="true">↗</i></button>
+      <button class="world-choice" data-world="light" aria-pressed="false"><span class="world-index">03</span><span>光影与氛围</span><i aria-hidden="true">↗</i></button>
+      <button class="world-choice" data-world="shots" aria-pressed="false"><span class="world-index">04</span><span>镜头与叙事</span><i aria-hidden="true">↗</i></button>
+    </div>
+    <div class="worlds-preview"><div id="world-images" class="world-images" aria-live="off"></div><a href="#library" id="world-explore">探索这个方向 <span aria-hidden="true">↗</span></a></div>
+  </div>
+</section>
+<section class="closing-cta">
+  <div class="closing-constellation" aria-hidden="true"><img src="./assets/inspiration-mountain-alaska.jpg" alt=""><img src="./assets/character-jiang-mingzi.jpg" alt=""><img src="./assets/inspiration-forest-sunbeams.jpg" alt=""><img src="./assets/inspiration-window-light.jpg" alt=""></div>
+  <div class="closing-cta-copy"><img class="closing-brand" src="./assets/dotty-mark.svg" alt=""><h2>下一部作品，<br>从你的下一颗点子开始。</h2><p>创意、镜头与伙伴，在这里相遇。</p><div><button class="pill-button" data-create-project>开始创作 <span aria-hidden="true">↗</span></button><button class="closing-secondary" data-open-workbench>进入工作台 <span aria-hidden="true">↗</span></button></div></div>
+</section>
+
+</main>
+<footer class="site-footer" aria-label="DOTTY 页脚">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <a class="wordmark" href="#" aria-label="DOTTY 首页"><img src="./assets/dotty-wordmark.svg" alt="DOTTY"></a>
+      <p>让每一个点子，<br>走向下一部作品。</p>
+      <span class="footer-brand-caption">为专业影视团队而生</span>
+    </div>
+    <nav class="footer-nav" aria-label="页脚导航">
+      <div class="footer-column"><h2>创作工作流</h2>
+        <button data-open-workbench>项目工作台</button>
+        <button data-open-workbench data-tab="shots">分镜与镜头</button>
+        <button data-open-workbench data-tab="shots" data-focus-tasks>生成任务</button>
+        <button data-open-workbench data-tab="review">审片与反馈</button>
+        <button data-create-project>新建创作项目 <span aria-hidden="true">↗</span></button>
+      </div>
+      <div class="footer-column"><h2>创作资源</h2>
+        <a href="#library" data-library-filter="全部">灵感素材库</a>
+        <a href="#library" data-library-filter="场景">场景与世界</a>
+        <a href="#library" data-library-filter="角色">角色与人物</a>
+        <a href="#library" data-library-filter="光影">光影与氛围</a>
+        <a href="#library" data-library-filter="已收藏">我的收藏</a>
+      </div>
+      <div class="footer-column"><h2>关于 DOTTY</h2>
+        <a href="#possibilities">探索工作方式</a>
+        <button data-footer-info="about">平台介绍</button>
+        <button data-footer-info="demo">关于此演示</button>
+        <div class="footer-return"><a href="#">回到顶部 <span aria-hidden="true">↑</span></a></div>
+      </div>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal">
+      <span class="footer-copyright"><img src="./assets/dotty-mark.svg" alt="" aria-hidden="true"><span>© 2026 DOTTY</span></span>
+      <button data-footer-info="demo">演示说明</button>
+      <button data-footer-info="privacy">本地数据与隐私</button>
+    </div>
+    <div class="footer-tools">
+      <div class="language-picker">
+        <button id="language-toggle" type="button" aria-expanded="false" aria-controls="language-menu" aria-label="切换语言">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><ellipse cx="12" cy="12" rx="4" ry="9"></ellipse><path d="M3 12h18"></path></svg>
+          <span id="current-language">简体中文</span><svg class="language-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"></path></svg>
+        </button>
+        <div id="language-menu" class="language-menu" role="group" aria-label="选择语言" hidden>
+          <p>语言 / LANGUAGE</p>
+          <button type="button" data-locale="zh-CN" aria-pressed="true">简体中文 <span aria-hidden="true">✓</span></button>
+          <button type="button" data-locale="en" aria-pressed="false">English <span aria-hidden="true">✓</span></button>
+        </div>
+      </div>
+      <div class="footer-socials" aria-label="社交媒体">
+        <span class="social-icon" role="img" aria-label="小红书" title="小红书"><img src="./assets/social/xiaohongshu-official-white.png" alt="" aria-hidden="true"></span>
+        <span class="social-icon" role="img" aria-label="Bilibili" title="Bilibili"><img src="./assets/social/bilibili-official-white.png" alt="" aria-hidden="true"></span>
+        <span class="social-icon" role="img" aria-label="抖音" title="抖音"><img src="./assets/social/douyin-official-white.png" alt="" aria-hidden="true"></span>
+        <span class="social-icon" role="img" aria-label="微信公众号" title="微信公众号"><img src="./assets/social/wechat-official-white.png" alt="" aria-hidden="true"></span>
+        <span class="social-icon" role="img" aria-label="Instagram" title="Instagram"><img src="./assets/social/instagram-brand-white.png" alt="" aria-hidden="true"></span>
+        <span class="social-icon" role="img" aria-label="YouTube" title="YouTube"><img src="./assets/social/youtube-official-white.png" alt="" aria-hidden="true"></span>
+        <span class="social-icon" role="img" aria-label="Facebook" title="Facebook"><img src="./assets/social/facebook-brand-white.png" alt="" aria-hidden="true"></span>
+        <span class="social-icon" role="img" aria-label="X" title="X"><img src="./assets/social/x-official-white.png" alt="" aria-hidden="true"></span>
+      </div>
+    </div>
+  </div>
+</footer></div>
+<div id="workbench-view" hidden></div><dialog id="footer-info-dialog"></dialog><dialog id="asset-dialog" aria-label="创作素材详情"></dialog><dialog id="create-dialog" aria-label="新建项目"></dialog><div id="toast" class="toast" hidden role="status" aria-live="polite"></div>
+<script type="module">
+import { assets } from './data.js';
+const positions=[[3,22,82,-20,.95],[21,17,83,37,.95],[33,7,55,-22,.40],[60,6,75,30,.65],[86,17,65,-24,.9],[97,8,80,-20,.9],[15,36,68,18,.55],[0,45,82,8,.8],[88,38,80,-9,.9],[73,42,72,-3,.22],[1,66,64,-12,.95],[16,61,57,-10,.8],[35,73,72,40,.35],[65,88,60,-22,.6],[80,78,66,35,.7],[95,72,92,20,.85],[6,86,86,-28,.9],[20,80,86,-30,.95],[47,94,58,6,.55],[70,92,87,-36,.65],[31,94,80,25,.8],[45,1,73,6,.35],[11,4,61,42,.45],[75,-2,83,43,.25]];
+document.querySelector('#floating-field').innerHTML=positions.map((p,i)=>`<div class="float-anchor" style="--x:${p[0]}%;--y:${p[1]}%;--s:${p[2]}px;--r:${p[3]}deg;--o:${p[4]};--delay:${-i*1.7}s;--duration:${18+i%6}s"><img src="${assets[i%assets.length].image}" alt="" draggable="false"></div>`).join('');
+</script><script type="module" src="./hero-motion.js?v=client-v8"></script><script type="module" src="./app.js?v=client-v8"></script></body></html>

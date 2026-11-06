@@ -1,0 +1,9 @@
+/* Layered drift and slow, independent self-rotation; loaded after styles.css. */
+#floating-field .float-anchor{left:var(--hero-x,var(--x));top:var(--hero-y,var(--y));width:var(--hero-size,var(--s));height:var(--hero-size,var(--s))}
+#floating-field .hero-motion-drift{display:block;width:100%;height:100%;animation:dotty-hero-drift var(--hero-float-time,18s) ease-in-out var(--hero-float-delay,0s) infinite alternate}
+#floating-field .hero-motion-drift img{animation:dotty-hero-rotate var(--hero-spin-time,240s) linear infinite;transform:rotate(var(--hero-angle-start,0deg));transform-origin:center}
+#floating-field.hero-motion-paused .hero-motion-drift,#floating-field.hero-motion-paused .hero-motion-drift img{animation-play-state:paused}
+@keyframes dotty-hero-rotate{from{transform:rotate(var(--hero-angle-start,0deg))}to{transform:rotate(var(--hero-angle-end,360deg))}}
+@keyframes dotty-hero-drift{from{translate:0 0}to{translate:var(--hero-float-x,3px) var(--hero-float-y,-8px)}}
+@media(max-width:767px){#floating-field .float-anchor.hero-motion-mobile-hidden{display:none}#floating-field .float-anchor:not(.hero-motion-mobile-hidden){display:block}#floating-field .hero-motion-drift{animation-duration:calc(var(--hero-float-time,18s)*1.2)}}
+@media(prefers-reduced-motion:reduce){#floating-field .hero-motion-drift,#floating-field .hero-motion-drift img{animation:none!important}#floating-field .hero-motion-drift img{transform:rotate(var(--hero-angle-start,0deg))}}
